@@ -33,4 +33,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ${{ secrets.DOCKERHUB_REPO_NAME }}/python-cicd-assignment:v1.0.0
+          tags: mwinel/python-cicd-assignment:v1.0.0
