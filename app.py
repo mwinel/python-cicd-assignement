@@ -12,6 +12,13 @@ def health_check():
 
     return 'OK - healthy'
 
+@app.route('/metrics')
+def metrics():
+    app.logger.info('Metrics request successfull')
+    app.logger.debug('DEBUG message')
+
+    return 'OK - metrics'
+
 @app.route('/')
 def hello_world():
     target = os.environ.get('TARGET', 'World')
