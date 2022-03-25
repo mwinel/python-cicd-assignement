@@ -67,8 +67,6 @@ jobs:
         run: |-
           gcloud builds submit \
             --tag us-central1-docker.pkg.dev/$PROJECT_ID/$CONTAINER_REGISTRY_REPO/$IMAGE_NAME:$GITHUB_SHA \
-            --build-arg "GITHUB_SHA=$GITHUB_SHA" \
-            --build-arg "GITHUB_REF=$GITHUB_REF" \
             .
 
       # Set up kustomize
