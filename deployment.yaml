@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: python-cicd-assignment-app
-        image: us-central1-docker.pkg.dev/python-cicd-assignment/python-cicd-assignment-repo/python-cicd-assignment:$GITHUB_SHA
+        image: us-central1-docker.pkg.dev/python-cicd-assignment/python-cicd-assignment-repo/python-cicd-assignment
         # This app listens on port 8080 for web traffic by default.
         ports:
         - containerPort: 8080
