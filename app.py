@@ -1,7 +1,9 @@
+
+import os
+
 from flask import Flask
 from flask import json
 import logging
-import os
 
 app = Flask(__name__)
 
@@ -43,4 +45,4 @@ if __name__ == "__main__":
     ## stream logs to a file
     logging.basicConfig(filename='app.log', level=logging.DEBUG)
     
-    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
+    app.run(debug=True, host='0.0.0.0')
