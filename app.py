@@ -1,48 +1,27 @@
-
 import os
+import logging
 
 from flask import Flask
-from flask import json
-import logging
 
 app = Flask(__name__)
 
 @app.route('/status')
-def healthcheck():
-    response = app.response_class(
-            response=json.dumps({ "result": "OK - healthy" }),
-            status=200,
-            mimetype='application/json'
-    )
+def health_check():
     app.logger.info('Status request successfull')
     app.logger.debug('DEBUG message')
-    return response
 
-@app.route('/metrics')
-def metrics():
-    response = app.response_class(
-            response=json.dumps({ 
-                "status": "success",
-                "code": 0,
-                "data": {
-                    "UserCount": 140,
-                    "UserCountActive": 23
-                }
-            }),
-            status=200,
-            mimetype='application/json'
-    )
-    app.logger.info('Metrics request successfull')
-    return response
+    return 'OK - healthy'
 
-@app.route("/")
-def hello():
+@app.route('/')
+def hello_world():
+    target = os.environ.get('TARGET', 'World')
     app.logger.info('Main request successfull')
+    app.logger.debug('DEBUG message')
 
-    return "Hello World!"
+    return 'Hello {}!\n'.format(target)
 
 if __name__ == "__main__":
     ## stream logs to a file
     logging.basicConfig(filename='app.log', level=logging.DEBUG)
-    
-    app.run(debug=True, host='0.0.0.0')
+
+    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))

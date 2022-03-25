@@ -1,0 +1,25 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-cicd-assignment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-cicd-assignment
+  template:
+    metadata:
+      labels:
+        app: python-cicd-assignment
+    spec:
+      containers:
+      - name: python-cicd-assignment-app
+        image: us-central1-docker.pkg.dev/python-cicd-assignment/python-cicd-assignment-repo/python-cicd-assignment:v1.0.1
+        # This app listens on port 8080 for web traffic by default.
+        ports:
+        - containerPort: 8080
+        env:
+          - name: PORT
+            value: "8080"
+---
